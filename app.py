@@ -3,10 +3,8 @@ import os
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 
 # Load model ONCE
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

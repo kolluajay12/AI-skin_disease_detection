@@ -4,12 +4,12 @@ const axios = require("axios");
 const FormData = require("form-data");
 const path = require("path");
 const fs = require("fs");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 dotenv.config();
 
 const auth = require("../middleware/auth");
 const Prediction = require("../models/Prediction");
-const ML_API_URL = process.env.ML_API_URL;
+
 const router = express.Router();
 
 // ==========================
@@ -47,7 +47,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
 
         // ✅ Call Flask API
         const response = await axios.post(
-            `${ML_API_URL}/predict`,
+            `${process.env.ML_API_URL}/predict`,
             formData,
             {
                 headers: formData.getHeaders()
