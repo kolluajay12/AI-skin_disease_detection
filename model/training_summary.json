@@ -1,0 +1,20 @@
+{
+  "training_config": {
+    "dataset_path": "dataset/",
+    "num_classes": 20,
+    "total_images": 11381,
+    "training_images": 9112,
+    "validation_images": 2269,
+    "image_size": 224,
+    "batch_size": 32,
+    "phase1_epochs": 20,
+    "phase2_epochs": 30
+  },
+  "results": {
+    "accuracy": 0.15777875716174528,
+    "balanced_accuracy": 0.15294063932149177,
+    "top3_accuracy": 0.3556632995605469
+  },
+  "duration": "3:45:03.840479",
+  "timestamp": "2025-11-08 14:09:06"
+}

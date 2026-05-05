@@ -1,0 +1,26 @@
+                       precision    recall  f1-score   support
+
+        Acne Vulgaris     0.4555    0.7373    0.5631       118
+    Actinic Keratoses     0.7540    0.5026    0.6032       189
+ Basal Cell Carcinoma     0.8193    0.8718    0.8447        78
+     Benign Keratosis     0.5782    0.9239    0.7113        92
+           Cellulitis     0.8421    0.8889    0.8649        36
+       Dermatofibroma     0.6471    0.7333    0.6875        30
+               Eczema     0.4962    0.5759    0.5331       224
+         Folliculitis     0.9948    1.0000    0.9974       192
+             Impetigo     0.9259    0.9259    0.9259        27
+             Melanoma     0.8000    0.4444    0.5714        90
+         Nevus (Mole)     0.6389    0.5750    0.6053        80
+            Psoriasis     0.4884    0.3841    0.4300       164
+     Ringworm (Tinea)     0.4174    0.2609    0.3211       184
+              Rosacea     0.4030    0.4821    0.4390        56
+              Scabies     0.6429    0.7500    0.6923        24
+Seborrheic Dermatitis     0.9897    1.0000    0.9948       192
+    Urticaria (Hives)     0.1765    0.1429    0.1579        21
+     Vascular Lesions     0.8000    0.9655    0.8750        29
+             Vitiligo     0.8970    0.9801    0.9367       151
+          Warts (HPV)     0.9362    0.9555    0.9458       292
+
+             accuracy                         0.7171      2269
+            macro avg     0.6851    0.7050    0.6850      2269
+         weighted avg     0.7201    0.7171    0.7084      2269

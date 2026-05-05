@@ -1,0 +1,12 @@
+{
+  "Acne Vulgaris": 0,
+  "Actinic Keratoses": 1,
+  "Basal Cell Carcinoma": 2,
+  "Eczema": 3,
+  "Folliculitis": 4,
+  "Melanoma": 5,
+  "Psoriasis": 6,
+  "Ringworm": 7,
+  "Vitiligo": 8,
+  "Warts (HPV)": 9
+}

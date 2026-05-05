@@ -1,0 +1,102 @@
+{
+  "Actinic Keratoses": {
+    "advice": "Consult a dermatologist for evaluation. Use broad-spectrum sunscreen (SPF 50+) daily.",
+    "severity": "medium",
+    "urgency": "Moderate - Schedule appointment within 2 weeks"
+  },
+  "Basal Cell Carcinoma": {
+    "advice": "Seek immediate medical attention. This requires professional treatment.",
+    "severity": "high",
+    "urgency": "High - Consult doctor within 1 week"
+  },
+  "Benign Keratosis": {
+    "advice": "Generally harmless but consult if it changes appearance.",
+    "severity": "low",
+    "urgency": "Low - Routine checkup recommended"
+  },
+  "Dermatofibroma": {
+    "advice": "Usually harmless. Monitor for changes in size or color.",
+    "severity": "low",
+    "urgency": "Low - No immediate action needed"
+  },
+  "Melanoma": {
+    "advice": "URGENT: Consult a dermatologist immediately! Early detection is critical.",
+    "severity": "critical",
+    "urgency": "CRITICAL - Seek medical attention immediately"
+  },
+  "Nevus (Mole)": {
+    "advice": "Monitor for changes using ABCDE rule. Use sunscreen regularly.",
+    "severity": "low",
+    "urgency": "Low - Annual skin check recommended"
+  },
+  "Vascular Lesions": {
+    "advice": "Generally benign but consult doctor for proper diagnosis.",
+    "severity": "low",
+    "urgency": "Low - Routine consultation recommended"
+  },
+  "Eczema": {
+    "advice": "Keep skin moisturized. Avoid harsh soaps and hot water.",
+    "severity": "medium",
+    "urgency": "Moderate - If symptoms persist beyond 2 weeks"
+  },
+  "Psoriasis": {
+    "advice": "Use medicated creams. Reduce stress. Moisturize regularly.",
+    "severity": "medium",
+    "urgency": "Moderate - Professional treatment recommended"
+  },
+  "Acne Vulgaris": {
+    "advice": "Wash face twice daily. Use non-comedogenic products.",
+    "severity": "low",
+    "urgency": "Low - Try over-the-counter treatments first"
+  },
+  "Rosacea": {
+    "advice": "Avoid triggers like spicy foods and alcohol. Use gentle products.",
+    "severity": "medium",
+    "urgency": "Moderate - Professional guidance recommended"
+  },
+  "Ringworm (Tinea)": {
+    "advice": "Apply antifungal cream. Keep area clean and dry.",
+    "severity": "medium",
+    "urgency": "Moderate - Treat promptly to prevent spread"
+  },
+  "Vitiligo": {
+    "advice": "Protect affected areas from sun. Consult dermatologist.",
+    "severity": "medium",
+    "urgency": "Moderate - Consultation recommended"
+  },
+  "Urticaria (Hives)": {
+    "advice": "Identify triggers. Take antihistamines as needed.",
+    "severity": "medium",
+    "urgency": "Moderate - Urgent if breathing issues"
+  },
+  "Warts (HPV)": {
+    "advice": "Try OTC wart treatments with salicylic acid.",
+    "severity": "low",
+    "urgency": "Low - Self-treatment options available"
+  },
+  "Impetigo": {
+    "advice": "Keep area clean. Apply antibiotic ointment.",
+    "severity": "medium",
+    "urgency": "Moderate - Medical treatment recommended"
+  },
+  "Cellulitis": {
+    "advice": "Seek medical attention promptly. Requires antibiotics.",
+    "severity": "high",
+    "urgency": "High - Medical attention within 24 hours"
+  },
+  "Scabies": {
+    "advice": "Consult doctor for prescription medication.",
+    "severity": "medium",
+    "urgency": "Moderate - Prompt treatment to prevent spread"
+  },
+  "Folliculitis": {
+    "advice": "Keep area clean and dry. Use antibacterial soap.",
+    "severity": "low",
+    "urgency": "Low - Usually self-limiting"
+  },
+  "Seborrheic Dermatitis": {
+    "advice": "Use medicated shampoos. Manage stress levels.",
+    "severity": "low",
+    "urgency": "Low - OTC treatments available"
+  }
+}
