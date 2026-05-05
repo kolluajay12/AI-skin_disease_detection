@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: cd ml && gunicorn predict:app

@@ -59,7 +59,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
         // ==========================
         // LOAD ADVICE JSON
         // ==========================
-        const advicePath = path.join(__dirname, "../../model/disease_advice.json");
+        const advicePath = path.join(__dirname, "../../ml/model/disease_advice.json");
 
         let diseaseData = {
             advice: "Consult a dermatologist.",
