@@ -40,7 +40,7 @@ instance/
 
 # Model files (uncomment to track model files in git)
 # model/*.h5
-# model/*.keras
+ model/*.keras
 
 # Uploads folder
 static/uploads/*
