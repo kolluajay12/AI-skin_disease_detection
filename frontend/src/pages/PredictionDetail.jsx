@@ -25,7 +25,7 @@ const PredictionDetail = () => {
     const fetchPrediction = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/${id}`, {
+        const res = await axios.get(`${https://ai-skin-disease-detection-9.onrender.com}/api/predict/${id}`, {
           headers: { 'x-auth-token': token }
         });
         setPrediction(res.data);
