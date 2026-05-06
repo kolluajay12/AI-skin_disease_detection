@@ -50,7 +50,8 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
             `${process.env.ML_API_URL}/predict`,
             formData,
             {
-                headers: formData.getHeaders()
+                headers: formData.getHeaders(),
+                timeout: 120000
             }
         );
 
@@ -59,7 +60,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
         // ==========================
         // LOAD ADVICE JSON
         // ==========================
-        const advicePath = path.join(__dirname, "../../ml/model/disease_advice.json");
+        const advicePath = path.join(__dirname, "../data/disease_advice.json");
 
         let diseaseData = {
             advice: "Consult a dermatologist.",
