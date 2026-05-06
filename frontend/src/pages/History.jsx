@@ -30,7 +30,7 @@ const History = () => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`${https://ai-skin-disease-detection-9.onrender.com}/api/predict/history`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/history`, {
           headers: { 'x-auth-token': token }
         });
         setHistory(res.data);

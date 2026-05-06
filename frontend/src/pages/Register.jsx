@@ -28,7 +28,7 @@ const Register = ({ login }) => {
 
     try {
       const res = await axios.post(
-        `${https://ai-skin-disease-detection-9.onrender.com}/api/auth/register`,
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         formData
       );
 

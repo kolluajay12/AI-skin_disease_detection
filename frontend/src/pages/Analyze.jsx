@@ -87,7 +87,7 @@ const Analyze = () => {
     formData.append('image', file);
 
     try {
-      const res = await axios.post(`${https://ai-skin-disease-detection-9.onrender.com}/api/predict`, formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/predict`, formData, {
         headers: {
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'
