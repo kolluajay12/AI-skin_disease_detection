@@ -123,5 +123,5 @@ htmlcov/
 # Distribution
 *.whl
 
-node_modules/
-package-lock.json
+echo "node_modules/" >> backend/.gitignore
+echo "node_modules/" >> frontend/.gitignore

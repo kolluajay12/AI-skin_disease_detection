@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { 
-  ChevronLeft, 
-  ShieldCheck, 
-  AlertCircle, 
-  Info, 
-  Activity, 
-  Clock, 
-  Plus, 
-  Settings 
+import {
+  ChevronLeft,
+  ShieldCheck,
+  AlertCircle,
+  Info,
+  Activity,
+  Clock,
+  Plus,
+  Settings
 } from 'lucide-react';
 import axios from 'axios';
 import './Analyze.css'; // Reusing Analyze.css for consistent result styling
+
 
 const PredictionDetail = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const PredictionDetail = () => {
     const fetchPrediction = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:8000/api/predict/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/${id}`, {
           headers: { 'x-auth-token': token }
         });
         setPrediction(res.data);
@@ -38,7 +39,7 @@ const PredictionDetail = () => {
   }, [id]);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#0f172a] text-teal-400">Loading Report...</div>;
-  
+
   if (error || !prediction) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#0f172a] p-4 text-center">
@@ -53,8 +54,8 @@ const PredictionDetail = () => {
     <div className="analyze-page result-view-active">
       <div className="result-container">
         {/* BACK LINK */}
-        <button 
-          onClick={() => navigate('/history')} 
+        <button
+          onClick={() => navigate('/history')}
           className="detail-back-btn"
         >
           <div className="back-icon-pill">
@@ -68,21 +69,21 @@ const PredictionDetail = () => {
             <ShieldCheck size={20} />
             <span>Analysis Results</span>
           </div>
-          
+
           <div className="result-body">
             <div className="result-img-wrapper">
-               <img 
-                 src={`http://localhost:8000/uploads/${prediction.userId}/${prediction.imagePath}`} 
-                 alt={prediction.diseaseName} 
-               />
+              <img
+                src={`${import.meta.env.VITE_API_URL}/uploads/${prediction.userId}/${prediction.imagePath}`}
+                alt={prediction.diseaseName}
+              />
             </div>
             <h1 className="disease-title">{prediction.diseaseName}</h1>
-            
+
             <div className="confidence-section">
               <div className="section-label">Confidence Level</div>
               <div className="confidence-track">
-                <div 
-                  className="confidence-fill" 
+                <div
+                  className="confidence-fill"
                   style={{ width: `${prediction.confidence}%` }}
                 >
                   {prediction.confidence}%
@@ -98,20 +99,20 @@ const PredictionDetail = () => {
                 <span className="box-label">Urgency Level</span>
                 <p className="box-text">
                   {prediction.severity === 'high' ? 'High - Immediate dermatological consultation required' :
-                   prediction.severity === 'medium' ? 'Moderate - Schedule a check-up soon' :
-                   prediction.urgency || 'Low - Annual skin check recommended'}
+                    prediction.severity === 'medium' ? 'Moderate - Schedule a check-up soon' :
+                      prediction.urgency || 'Low - Annual skin check recommended'}
                 </p>
               </div>
             </div>
 
             <div className="info-box-styled medical-advice">
-               <div className="box-icon-side">
-                 <Activity size={18} />
-               </div>
-               <div className="box-content">
-                 <span className="box-label">Medical Advice</span>
-                 <p className="box-text">{prediction.advice}</p>
-               </div>
+              <div className="box-icon-side">
+                <Activity size={18} />
+              </div>
+              <div className="box-content">
+                <span className="box-label">Medical Advice</span>
+                <p className="box-text">{prediction.advice}</p>
+              </div>
             </div>
 
             <div className="info-box-styled disclaimer-box">
@@ -139,7 +140,7 @@ const PredictionDetail = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="floating-settings">
         <Settings size={22} />
       </div>

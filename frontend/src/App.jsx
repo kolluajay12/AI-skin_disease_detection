@@ -12,6 +12,7 @@ import PredictionDetail from './pages/PredictionDetail';
 import Profile from './pages/Profile';
 import axios from 'axios';
 
+
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('http://localhost:8000/api/auth/user', {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/auth/user`, {
         headers: { 'x-auth-token': token }
       }).then(res => {
         setUser(res.data);
@@ -63,7 +64,7 @@ function App() {
             <Route path="/" element={!user ? <Landing /> : <Navigate to="/dashboard" />} />
             <Route path="/login" element={!user ? <Login login={login} /> : <Navigate to="/dashboard" />} />
             <Route path="/register" element={!user ? <Register login={login} /> : <Navigate to="/dashboard" />} />
-            
+
             {/* Protected Routes */}
             <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
             <Route path="/analyze" element={user ? <Analyze /> : <Navigate to="/login" />} />

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { 
-  User, 
-  Edit, 
-  Key, 
-  Activity, 
-  Calendar, 
-  ShieldCheck, 
-  Mail, 
-  Phone, 
+import {
+  User,
+  Edit,
+  Key,
+  Activity,
+  Calendar,
+  ShieldCheck,
+  Mail,
+  Phone,
   Info,
   X,
   CheckCircle2,
@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import './Profile.css';
+
 
 const Profile = ({ user, updateUser }) => {
   const [stats, setStats] = useState({ totalScans: 0, daysActive: 0 });
@@ -44,13 +45,13 @@ const Profile = ({ user, updateUser }) => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:8000/api/predict/history', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/history`, {
           headers: { 'x-auth-token': token }
         });
-        
+
         const uniqueDays = new Set(res.data.map(item => new Date(item.createdAt).toDateString())).size;
-        
-        setStats({ 
+
+        setStats({
           totalScans: res.data.length,
           daysActive: uniqueDays
         });
@@ -68,7 +69,7 @@ const Profile = ({ user, updateUser }) => {
     setMsg({ type: 'loading', text: 'Updating profile...' });
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put('http://localhost:8000/api/auth/profile', profileForm, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/auth/profile`, profileForm, {
         headers: { 'x-auth-token': token }
       });
       updateUser(res.data);
@@ -84,11 +85,11 @@ const Profile = ({ user, updateUser }) => {
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
       return setMsg({ type: 'error', text: 'Passwords do not match' });
     }
-    
+
     setMsg({ type: 'loading', text: 'Updating password...' });
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:8000/api/auth/password', {
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/auth/password`, {
         currentPassword: passwordForm.currentPassword,
         newPassword: passwordForm.newPassword
       }, {
@@ -108,22 +109,22 @@ const Profile = ({ user, updateUser }) => {
   return (
     <div className="profile-page">
       <div className="profile-container">
-        
+
         {/* LEFT COLUMN */}
         <div className="profile-sidebar">
           <div className="profile-card user-main-card">
             <div className="avatar-wrapper">
-               <div className="profile-avatar">
-                 <User size={64} />
-               </div>
+              <div className="profile-avatar">
+                <User size={64} />
+              </div>
             </div>
             <h2 className="profile-name">{user?.fullName || 'User'}</h2>
-            
+
             <button className="edit-profile-btn" onClick={() => setShowEditModal(true)}>
               <Edit size={16} />
               <span>Edit Profile</span>
             </button>
-            
+
             <button className="change-password-link" onClick={() => setShowPasswordModal(true)}>
               <Key size={14} />
               <span>Change Password</span>
@@ -180,8 +181,8 @@ const Profile = ({ user, updateUser }) => {
             </div>
 
             <div className="info-box">
-               <Info size={16} />
-               <span>Keep your profile up to date for better analysis tracking!</span>
+              <Info size={16} />
+              <span>Keep your profile up to date for better analysis tracking!</span>
             </div>
           </div>
 
@@ -193,19 +194,19 @@ const Profile = ({ user, updateUser }) => {
             <div className="activity-container">
               <div className="activity-stats-grid">
                 <div className="activity-stat-card">
-                   <div className="act-icon icon-blue"><Activity size={24} /></div>
-                   <div className="act-value">{stats.totalScans}</div>
-                   <div className="act-label">Total Scans</div>
+                  <div className="act-icon icon-blue"><Activity size={24} /></div>
+                  <div className="act-value">{stats.totalScans}</div>
+                  <div className="act-label">Total Scans</div>
                 </div>
                 <div className="activity-stat-card">
-                   <div className="act-icon icon-green"><Calendar size={24} /></div>
-                   <div className="act-value">{stats.daysActive}</div>
-                   <div className="act-label">Days Active</div>
+                  <div className="act-icon icon-green"><Calendar size={24} /></div>
+                  <div className="act-value">{stats.daysActive}</div>
+                  <div className="act-label">Days Active</div>
                 </div>
                 <div className="activity-stat-card">
-                   <div className="act-icon icon-cyan"><ShieldCheck size={24} /></div>
-                   <div className="act-value">0</div>
-                   <div className="act-label">Doctor Visits</div>
+                  <div className="act-icon icon-cyan"><ShieldCheck size={24} /></div>
+                  <div className="act-value">0</div>
+                  <div className="act-label">Doctor Visits</div>
                 </div>
               </div>
               <div className="activity-divider"></div>
@@ -227,69 +228,69 @@ const Profile = ({ user, updateUser }) => {
               <button className="close-modal" onClick={() => setShowEditModal(false)}><X /></button>
             </div>
             <form onSubmit={handleProfileUpdate}>
-               <div className="form-group">
-                 <label>Full Name</label>
-                 <input 
-                   type="text" 
-                   value={profileForm.fullName} 
-                   onChange={(e) => setProfileForm({...profileForm, fullName: e.target.value})} 
-                   required
-                 />
-               </div>
-               <div className="form-group">
-                 <label>Email</label>
-                 <input 
-                   type="email" 
-                   value={profileForm.email} 
-                   onChange={(e) => setProfileForm({...profileForm, email: e.target.value})} 
-                   required
-                 />
-               </div>
+              <div className="form-group">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  value={profileForm.fullName}
+                  onChange={(e) => setProfileForm({ ...profileForm, fullName: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  value={profileForm.email}
+                  onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })}
+                  required
+                />
+              </div>
 
-               <div className="form-group-row">
-                  <div className="form-group flex-1">
-                    <label>Phone Number</label>
-                    <input 
-                      type="text" 
-                      placeholder="+1 234 567 890"
-                      value={profileForm.phone} 
-                      onChange={(e) => setProfileForm({...profileForm, phone: e.target.value})} 
-                    />
-                  </div>
-                  <div className="form-group flex-1">
-                    <label>Date of Birth</label>
-                    <input 
-                      type="date" 
-                      value={profileForm.dob} 
-                      onChange={(e) => setProfileForm({...profileForm, dob: e.target.value})} 
-                    />
-                  </div>
-               </div>
-               <div className="form-group">
-                 <label>Gender</label>
-                 <select 
-                    value={profileForm.gender} 
-                    onChange={(e) => setProfileForm({...profileForm, gender: e.target.value})}
-                    className="modal-select"
-                 >
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                 </select>
-               </div>
+              <div className="form-group-row">
+                <div className="form-group flex-1">
+                  <label>Phone Number</label>
+                  <input
+                    type="text"
+                    placeholder="+1 234 567 890"
+                    value={profileForm.phone}
+                    onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
+                  />
+                </div>
+                <div className="form-group flex-1">
+                  <label>Date of Birth</label>
+                  <input
+                    type="date"
+                    value={profileForm.dob}
+                    onChange={(e) => setProfileForm({ ...profileForm, dob: e.target.value })}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Gender</label>
+                <select
+                  value={profileForm.gender}
+                  onChange={(e) => setProfileForm({ ...profileForm, gender: e.target.value })}
+                  className="modal-select"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
 
-               {msg.text && (
-                 <div className={`modal-msg ${msg.type}`}>
-                   {msg.type === 'success' ? <CheckCircle2 size={16}/> : <AlertCircle size={16}/>}
-                   {msg.text}
-                 </div>
-               )}
+              {msg.text && (
+                <div className={`modal-msg ${msg.type}`}>
+                  {msg.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                  {msg.text}
+                </div>
+              )}
 
-               <button type="submit" className="modal-btn" disabled={msg.type === 'loading'}>
-                 {msg.type === 'loading' ? 'Saving...' : 'Save Changes'}
-               </button>
+              <button type="submit" className="modal-btn" disabled={msg.type === 'loading'}>
+                {msg.type === 'loading' ? 'Saving...' : 'Save Changes'}
+              </button>
             </form>
           </div>
         </div>
@@ -304,44 +305,44 @@ const Profile = ({ user, updateUser }) => {
               <button className="close-modal" onClick={() => setShowPasswordModal(false)}><X /></button>
             </div>
             <form onSubmit={handlePasswordUpdate}>
-               <div className="form-group">
-                 <label>Current Password</label>
-                 <input 
-                    type="password" 
-                    required 
-                    value={passwordForm.currentPassword}
-                    onChange={(e) => setPasswordForm({...passwordForm, currentPassword: e.target.value})}
-                 />
-               </div>
-               <div className="form-group">
-                 <label>New Password</label>
-                 <input 
-                    type="password" 
-                    required 
-                    value={passwordForm.newPassword}
-                    onChange={(e) => setPasswordForm({...passwordForm, newPassword: e.target.value})}
-                 />
-               </div>
-               <div className="form-group">
-                 <label>Confirm New Password</label>
-                 <input 
-                    type="password" 
-                    required 
-                    value={passwordForm.confirmPassword}
-                    onChange={(e) => setPasswordForm({...passwordForm, confirmPassword: e.target.value})}
-                 />
-               </div>
+              <div className="form-group">
+                <label>Current Password</label>
+                <input
+                  type="password"
+                  required
+                  value={passwordForm.currentPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>New Password</label>
+                <input
+                  type="password"
+                  required
+                  value={passwordForm.newPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>Confirm New Password</label>
+                <input
+                  type="password"
+                  required
+                  value={passwordForm.confirmPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
+                />
+              </div>
 
-               {msg.text && (
-                 <div className={`modal-msg ${msg.type}`}>
-                   {msg.type === 'success' ? <CheckCircle2 size={16}/> : <AlertCircle size={16}/>}
-                   {msg.text}
-                 </div>
-               )}
+              {msg.text && (
+                <div className={`modal-msg ${msg.type}`}>
+                  {msg.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                  {msg.text}
+                </div>
+              )}
 
-               <button type="submit" className="modal-btn" disabled={msg.type === 'loading'}>
-                 {msg.type === 'loading' ? 'Updating...' : 'Update Password'}
-               </button>
+              <button type="submit" className="modal-btn" disabled={msg.type === 'loading'}>
+                {msg.type === 'loading' ? 'Updating...' : 'Update Password'}
+              </button>
             </form>
           </div>
         </div>

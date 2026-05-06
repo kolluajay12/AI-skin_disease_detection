@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
-import { 
-  Upload, 
-  Camera, 
-  ShieldCheck, 
-  AlertCircle, 
+import {
+  Upload,
+  Camera,
+  ShieldCheck,
+  AlertCircle,
   X,
   Plus,
   Clock,
@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Analyze.css';
 
+
 const Analyze = () => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -24,7 +25,7 @@ const Analyze = () => {
   const [inputMethod, setInputMethod] = useState('upload'); // 'upload' or 'camera'
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [prediction, setPrediction] = useState(null); // The scan result
-  
+
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ const Analyze = () => {
   // CAMERA LOGIC
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } } 
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }
       });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
@@ -58,7 +59,7 @@ const Analyze = () => {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       canvas.getContext('2d').drawImage(video, 0, 0);
-      
+
       canvas.toBlob((blob) => {
         const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
         setFile(file);
@@ -80,13 +81,13 @@ const Analyze = () => {
     if (!file) return;
     setLoading(true);
     setError(null);
-    
+
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('image', file);
 
     try {
-      const res = await axios.post('http://localhost:8000/api/predict', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/predict`, formData, {
         headers: {
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'
@@ -132,7 +133,7 @@ const Analyze = () => {
               <ShieldCheck size={20} />
               <span>Analysis Results</span>
             </div>
-            
+
             <div className="result-body">
               {preview && (
                 <div className="result-img-wrapper">
@@ -140,12 +141,12 @@ const Analyze = () => {
                 </div>
               )}
               <h1 className="disease-title">{prediction.diseaseName}</h1>
-              
+
               <div className="confidence-section">
                 <div className="section-label">Confidence Level</div>
                 <div className="confidence-track">
-                  <div 
-                    className="confidence-fill" 
+                  <div
+                    className="confidence-fill"
                     style={{ width: `${prediction.confidence}%` }}
                   >
                     {prediction.confidence}%
@@ -161,20 +162,20 @@ const Analyze = () => {
                   <span className="box-label">Urgency Level</span>
                   <p className="box-text">
                     {prediction.severity === 'high' ? 'High - Immediate dermatological consultation required' :
-                     prediction.severity === 'medium' ? 'Moderate - Schedule a check-up soon' :
-                     prediction.urgency || 'Low - Annual skin check recommended'}
+                      prediction.severity === 'medium' ? 'Moderate - Schedule a check-up soon' :
+                        prediction.urgency || 'Low - Annual skin check recommended'}
                   </p>
                 </div>
               </div>
 
               <div className="info-box-styled medical-advice">
-                 <div className="box-icon-side">
-                   <Activity size={18} />
-                 </div>
-                 <div className="box-content">
-                   <span className="box-label">Medical Advice</span>
-                   <p className="box-text">{prediction.advice || 'Personalized advice will appear here.'}</p>
-                 </div>
+                <div className="box-icon-side">
+                  <Activity size={18} />
+                </div>
+                <div className="box-content">
+                  <span className="box-label">Medical Advice</span>
+                  <p className="box-text">{prediction.advice || 'Personalized advice will appear here.'}</p>
+                </div>
               </div>
 
               <div className="info-box-styled disclaimer-box">
@@ -202,7 +203,7 @@ const Analyze = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="floating-settings">
           <Settings size={22} />
         </div>
@@ -213,22 +214,22 @@ const Analyze = () => {
   return (
     <div className="analyze-page">
       <div className="analyze-header">
-         <h1><Activity /> Real-time Analysis</h1>
-         <p>Capture or upload an image for immediate AI skin analysis</p>
+        <h1><Activity /> Real-time Analysis</h1>
+        <p>Capture or upload an image for immediate AI skin analysis</p>
       </div>
 
       <div className="analyze-card">
         <h2 className="input-method-title">Choose Input Method</h2>
-        
+
         <div className="tabs">
-          <button 
+          <button
             className={`tab-btn ${inputMethod === 'upload' ? 'active' : ''}`}
             onClick={() => setInputMethod('upload')}
           >
             <Upload size={18} />
             <span>Upload File</span>
           </button>
-          <button 
+          <button
             className={`tab-btn ${inputMethod === 'camera' ? 'active' : ''}`}
             onClick={() => setInputMethod('camera')}
           >
@@ -259,13 +260,13 @@ const Analyze = () => {
           </div>
         ) : (
           <div className="camera-view">
-            <video 
-              ref={videoRef} 
-              autoPlay 
-              playsInline 
-              className={`video-feed ${!isCameraActive ? 'hidden' : ''}`} 
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              className={`video-feed ${!isCameraActive ? 'hidden' : ''}`}
             />
-            
+
             {isCameraActive && (
               <button className="capture-btn" onClick={capturePhoto}>
                 <div className="inner-circle"></div>
@@ -274,17 +275,17 @@ const Analyze = () => {
 
             {!isCameraActive && (
               <div className="preview-container">
-                 {preview && <img src={preview} alt="Capture" className="preview-img" />}
-                 <button className="tab-btn active" onClick={startCamera}>
-                   <Camera size={18} /> Re-open Camera
-                 </button>
+                {preview && <img src={preview} alt="Capture" className="preview-img" />}
+                <button className="tab-btn active" onClick={startCamera}>
+                  <Camera size={18} /> Re-open Camera
+                </button>
               </div>
             )}
           </div>
         )}
 
-        <button 
-          className="analyze-submit-btn" 
+        <button
+          className="analyze-submit-btn"
           disabled={!file || loading}
           onClick={handleAnalyze}
         >

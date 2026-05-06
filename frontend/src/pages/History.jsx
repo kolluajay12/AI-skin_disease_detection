@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  History as HistoryIcon, 
-  Search, 
-  Folder, 
-  Camera, 
-  Info, 
-  Calendar, 
+import {
+  History as HistoryIcon,
+  Search,
+  Folder,
+  Camera,
+  Info,
+  Calendar,
   Clock,
   Settings,
   Trash2,
@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import './History.css';
+
 
 const History = () => {
   const [history, setHistory] = useState([]);
@@ -29,7 +30,7 @@ const History = () => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:8000/api/predict/history', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/history`, {
           headers: { 'x-auth-token': token }
         });
         setHistory(res.data);
@@ -50,7 +51,7 @@ const History = () => {
       await axios.delete(`http://localhost:8000/api/predict/${id}`, {
         headers: { 'x-auth-token': token }
       });
-      
+
       // Update local state to remove the deleted item
       setHistory(prev => prev.filter(item => item._id !== id));
     } catch (err) {
@@ -87,7 +88,7 @@ const History = () => {
   return (
     <div className="history-page">
       <div className="history-container">
-        
+
         {/* HEADER */}
         <header className="history-header">
           <div className="history-header-icon">
@@ -101,7 +102,7 @@ const History = () => {
 
         {/* SEARCH & FILTER BAR */}
         {!loading && history.length > 0 && (
-          <motion.div 
+          <motion.div
             className="search-filter-bar"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +120,7 @@ const History = () => {
                 className="search-input"
               />
               {searchTerm && (
-                <button 
+                <button
                   className="search-clear-btn"
                   onClick={() => setSearchTerm('')}
                   title="Clear search"
@@ -162,7 +163,7 @@ const History = () => {
 
             {/* Clear Filters */}
             {hasActiveFilters && (
-              <motion.button 
+              <motion.button
                 className="clear-filters-btn"
                 onClick={clearFilters}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -199,7 +200,7 @@ const History = () => {
           </div>
         ) : filteredHistory.length === 0 ? (
           /* NO RESULTS STATE */
-          <motion.div 
+          <motion.div
             className="empty-history"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -219,7 +220,7 @@ const History = () => {
           <div className="history-grid">
             <AnimatePresence>
               {filteredHistory.map((scan, i) => (
-                <motion.div 
+                <motion.div
                   key={scan._id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -229,8 +230,8 @@ const History = () => {
                   className="history-card"
                 >
                   <div className="card-img-wrapper">
-                    <img 
-                      src={`http://localhost:8000/uploads/${userData._id}/${scan.imagePath}`} 
+                    <img
+                      src={`http://localhost:8000/uploads/${userData._id}/${scan.imagePath}`}
                       alt={scan.diseaseName}
                     />
                   </div>
@@ -245,20 +246,20 @@ const History = () => {
                         {scan.severity}
                       </span>
                     </div>
-                    
+
                     <div className="confidence-sec">
                       <div className="confidence-info">
-                         <span>AI Confidence</span>
-                         <strong>{scan.confidence}%</strong>
+                        <span>AI Confidence</span>
+                        <strong>{scan.confidence}%</strong>
                       </div>
                       <div className="confidence-bar-bg">
-                         <div 
-                           className="confidence-bar-fill" 
-                           style={{ 
-                             width: `${scan.confidence}%`,
-                             background: scan.confidence > 80 ? '#22c55e' : (scan.confidence > 50 ? '#f59e0b' : '#ef4444')
-                           }}
-                         ></div>
+                        <div
+                          className="confidence-bar-fill"
+                          style={{
+                            width: `${scan.confidence}%`,
+                            background: scan.confidence > 80 ? '#22c55e' : (scan.confidence > 50 ? '#f59e0b' : '#ef4444')
+                          }}
+                        ></div>
                       </div>
                     </div>
 
@@ -267,7 +268,7 @@ const History = () => {
                         <Info size={16} />
                         View Details
                       </Link>
-                      <button 
+                      <button
                         className="delete-history-btn"
                         onClick={() => handleDelete(scan._id)}
                         title="Delete Record"

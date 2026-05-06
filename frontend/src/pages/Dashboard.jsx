@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { 
-  Activity, 
-  Clock, 
-  Camera, 
-  History, 
-  Eye, 
+import {
+  Activity,
+  Clock,
+  Camera,
+  History,
+  Eye,
   ChevronRight,
   Plus
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Dashboard.css';
+
 
 const Dashboard = ({ user }) => {
   const [history, setHistory] = useState([]);
@@ -21,7 +22,7 @@ const Dashboard = ({ user }) => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:8000/api/predict/history', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/predict/history`, {
           headers: { 'x-auth-token': token }
         });
         setHistory(res.data);
@@ -41,7 +42,7 @@ const Dashboard = ({ user }) => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
-        
+
         {/* STATS SECTION */}
         <div className="stats-grid">
           <div className="stat-card">
@@ -60,7 +61,7 @@ const Dashboard = ({ user }) => {
 
         {/* QUICK ACTIONS */}
         <div className="section-header-block">
-           <h2 className="section-main-title">Quick Actions</h2>
+          <h2 className="section-main-title">Quick Actions</h2>
         </div>
         <div className="quick-actions-grid">
           <Link to="/analyze" className="action-card action-new">
@@ -87,66 +88,66 @@ const Dashboard = ({ user }) => {
 
         {/* RECENT SCANS TABLE */}
         <div className="section-header-block">
-           <h2 className="section-main-title">Recent Scans</h2>
+          <h2 className="section-main-title">Recent Scans</h2>
         </div>
-        
+
         <div className="recent-scans-wrapper">
-           <table className="scans-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Condition</th>
-                  <th>Confidence</th>
-                  <th>Severity</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr><td colSpan="5" className="table-loading">Loading...</td></tr>
-                ) : history.length === 0 ? (
-                  <tr><td colSpan="5" className="table-empty">No recent scans found.</td></tr>
-                ) : (
-                  history.slice(0, 5).map(scan => (
-                    <tr key={scan._id}>
-                      <td className="date-cell">
-                        {new Date(scan.createdAt).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric', 
-                          year: 'numeric' 
-                        })}
-                      </td>
-                      <td className="condition-cell">{scan.diseaseName}</td>
-                      <td>
-                        <div className="table-confidence-bar">
-                           <div className="conf-value-label">{scan.confidence}%</div>
-                           <div className="conf-bar-track">
-                              <div className="conf-bar-fill" style={{ width: `${scan.confidence}%` }}></div>
-                           </div>
+          <table className="scans-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Condition</th>
+                <th>Confidence</th>
+                <th>Severity</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan="5" className="table-loading">Loading...</td></tr>
+              ) : history.length === 0 ? (
+                <tr><td colSpan="5" className="table-empty">No recent scans found.</td></tr>
+              ) : (
+                history.slice(0, 5).map(scan => (
+                  <tr key={scan._id}>
+                    <td className="date-cell">
+                      {new Date(scan.createdAt).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </td>
+                    <td className="condition-cell">{scan.diseaseName}</td>
+                    <td>
+                      <div className="table-confidence-bar">
+                        <div className="conf-value-label">{scan.confidence}%</div>
+                        <div className="conf-bar-track">
+                          <div className="conf-bar-fill" style={{ width: `${scan.confidence}%` }}></div>
                         </div>
-                      </td>
-                      <td>
-                        <span className={`severity-pill ${scan.severity?.toUpperCase() || 'LOW'}`}>
-                          {scan.severity?.toUpperCase() || 'LOW'}
-                        </span>
-                      </td>
-                      <td>
-                        <button className="table-view-btn" onClick={() => navigate(`/prediction/${scan._id}`)}>
-                          <Eye size={14} />
-                          <span>View</span>
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-           </table>
+                      </div>
+                    </td>
+                    <td>
+                      <span className={`severity-pill ${scan.severity?.toUpperCase() || 'LOW'}`}>
+                        {scan.severity?.toUpperCase() || 'LOW'}
+                      </span>
+                    </td>
+                    <td>
+                      <button className="table-view-btn" onClick={() => navigate(`/prediction/${scan._id}`)}>
+                        <Eye size={14} />
+                        <span>View</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
 
         <div className="view-all-container">
-           <Link to="/history" className="view-all-btn">
-             View All History <ChevronRight size={16} />
-           </Link>
+          <Link to="/history" className="view-all-btn">
+            View All History <ChevronRight size={16} />
+          </Link>
         </div>
 
       </div>
