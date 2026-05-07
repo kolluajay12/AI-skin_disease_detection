@@ -53,13 +53,13 @@ function App() {
     setUser(null);
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#1a2b33] text-teal-400 font-black tracking-widest uppercase text-xs animate-pulse">Initializing...</div>;
+  if (loading) return <div className="app-loading-screen">Initializing...</div>;
 
   return (
     <Router>
-      <div className="min-h-screen">
+      <div className="app-wrapper">
         <Navbar user={user} logout={logout} />
-        <main className="container mx-auto px-4 py-8">
+        <main className="app-main">
           <Routes>
             <Route path="/" element={!user ? <Landing /> : <Navigate to="/dashboard" />} />
             <Route path="/login" element={!user ? <Login login={login} /> : <Navigate to="/dashboard" />} />

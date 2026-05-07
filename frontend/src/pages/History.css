@@ -243,6 +243,22 @@
     }
 }
 
+/* LOADING STATE */
+.history-loading {
+    text-align: center;
+    padding: 80px 0;
+    color: #2dd4bf;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* CARD META ITEM */
+.card-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 /* CARDS GRID */
 .history-grid {
     display: grid;

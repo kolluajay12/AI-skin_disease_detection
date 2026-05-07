@@ -38,14 +38,14 @@ const PredictionDetail = () => {
     fetchPrediction();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#0f172a] text-teal-400">Loading Report...</div>;
+  if (loading) return <div className="prediction-loading">Loading Report...</div>;
 
   if (error || !prediction) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0f172a] p-4 text-center">
-        <AlertCircle size={48} className="text-red-400 mb-4" />
-        <h2 className="text-xl font-bold text-white mb-2">{error || 'Prediction not found'}</h2>
-        <button onClick={() => navigate('/history')} className="text-teal-400 hover:underline">Back to History</button>
+      <div className="prediction-error-page">
+        <AlertCircle size={48} className="prediction-error-icon" />
+        <h2 className="prediction-error-title">{error || 'Prediction not found'}</h2>
+        <button onClick={() => navigate('/history')} className="prediction-error-link">Back to History</button>
       </div>
     );
   }

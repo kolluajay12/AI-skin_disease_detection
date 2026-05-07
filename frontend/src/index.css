@@ -1,12 +1,4 @@
-@import "tailwindcss";
 
-@theme {
-  --color-teal-500: #4db6ac;
-  --color-teal-600: #3d968e;
-  --color-teal-900: #1a3a3a;
-  --color-brand-blue: #3b82f6;
-  --color-brand-dark: #121212;
-}
 
 :root {
   --primary-teal: #4db6ac;

@@ -183,7 +183,7 @@ const History = () => {
 
         {/* LOADING */}
         {loading ? (
-          <div className="text-center py-20 text-teal-400">Loading your history...</div>
+          <div className="history-loading">Loading your history...</div>
         ) : history.length === 0 ? (
           /* EMPTY STATE */
           <div className="empty-history">
@@ -237,7 +237,7 @@ const History = () => {
                   <div className="card-content">
                     <h3 className="card-title">{scan.diseaseName}</h3>
                     <div className="card-meta">
-                      <span className="flex items-center gap-1">
+                      <span className="card-meta-item">
                         <Calendar size={13} />
                         {new Date(scan.createdAt).toLocaleDateString()}
                       </span>
