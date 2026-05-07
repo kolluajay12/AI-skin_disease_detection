@@ -223,4 +223,124 @@
     text-align: center;
     padding: 40px !important;
     color: #64748b;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .dashboard-page {
+        padding: 40px 0;
+    }
+
+    .dashboard-container {
+        padding: 0 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 35px;
+    }
+
+    .stat-card {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .stat-value {
+        font-size: 36px;
+    }
+
+    .section-main-title {
+        font-size: 22px;
+    }
+
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .action-card {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .action-icon-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .action-info {
+        margin-left: 15px;
+    }
+
+    .action-info h3 {
+        font-size: 17px;
+    }
+
+    .recent-scans-wrapper {
+        border-radius: 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .scans-table {
+        min-width: 600px;
+    }
+
+    .scans-table th,
+    .scans-table td {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .view-all-btn {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-page {
+        padding: 30px 0;
+    }
+
+    .dashboard-container {
+        padding: 0 12px;
+    }
+
+    .stat-card {
+        padding: 20px 16px;
+    }
+
+    .stat-value {
+        font-size: 30px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .section-main-title {
+        font-size: 20px;
+    }
+
+    .action-card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .action-icon-circle {
+        width: 42px;
+        height: 42px;
+    }
+
+    .action-info h3 {
+        font-size: 15px;
+    }
+
+    .action-info p {
+        font-size: 12px;
+    }
 }

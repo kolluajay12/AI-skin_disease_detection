@@ -362,3 +362,137 @@
     font-size: 14px;
     padding: 40px 0;
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 40px 0;
+    }
+
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 16px;
+    }
+
+    .profile-card {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-name {
+        font-size: 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .activity-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .activity-stat-card {
+        padding: 20px;
+    }
+
+    .act-value {
+        font-size: 26px;
+    }
+
+    .section-header h3 {
+        font-size: 18px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .form-group-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page {
+        padding: 30px 0;
+    }
+
+    .profile-container {
+        padding: 0 12px;
+    }
+
+    .profile-card {
+        padding: 20px 16px;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .profile-name {
+        font-size: 18px;
+    }
+
+    .profile-username {
+        font-size: 13px;
+    }
+
+    .edit-profile-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .stat-item {
+        font-size: 13px;
+    }
+
+    .info-item label {
+        font-size: 11px;
+    }
+
+    .info-item p {
+        font-size: 14px;
+    }
+
+    .activity-header {
+        padding: 16px 20px;
+    }
+
+    .activity-container {
+        padding: 20px;
+    }
+
+    .act-value {
+        font-size: 22px;
+    }
+
+    .act-label {
+        font-size: 11px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        padding: 24px 16px;
+    }
+
+    .modal-header h3 {
+        font-size: 18px;
+    }
+
+    .modal-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}

@@ -483,3 +483,187 @@
 .video-feed.hidden {
     display: none;
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .analyze-page {
+        padding: 40px 16px;
+    }
+
+    .analyze-header {
+        margin-bottom: 25px;
+    }
+
+    .analyze-header h1 {
+        font-size: 28px;
+        gap: 8px;
+    }
+
+    .analyze-header p {
+        font-size: 14px;
+    }
+
+    .analyze-card {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+
+    .input-method-title {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .tabs {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tab-btn {
+        padding: 10px;
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .drop-zone {
+        height: 250px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
+
+    .drop-zone h3 {
+        font-size: 18px;
+    }
+
+    .drop-zone p {
+        font-size: 12px;
+    }
+
+    .camera-view {
+        height: 300px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
+
+    .capture-btn {
+        width: 56px;
+        height: 56px;
+    }
+
+    .capture-btn .inner-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .analyze-submit-btn {
+        padding: 14px;
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .result-container {
+        max-width: 100%;
+    }
+
+    .result-header {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+
+    .result-body {
+        padding: 25px 20px;
+    }
+
+    .result-img-wrapper {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 20px;
+    }
+
+    .disease-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .confidence-track {
+        height: 28px;
+    }
+
+    .confidence-fill {
+        font-size: 12px;
+    }
+
+    .info-box-styled {
+        border-radius: 10px;
+    }
+
+    .box-icon-side {
+        padding: 15px;
+    }
+
+    .box-content {
+        padding: 12px 12px 12px 0;
+    }
+
+    .result-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-ghost,
+    .btn-primary {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .floating-settings {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .analyze-page {
+        padding: 30px 12px;
+    }
+
+    .analyze-header h1 {
+        font-size: 24px;
+    }
+
+    .analyze-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    .drop-zone {
+        height: 200px;
+    }
+
+    .drop-zone h3 {
+        font-size: 16px;
+    }
+
+    .camera-view {
+        height: 250px;
+    }
+
+    .result-img-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+
+    .disease-title {
+        font-size: 20px;
+    }
+
+    .box-label {
+        font-size: 10px;
+    }
+
+    .box-text {
+        font-size: 13px;
+    }
+}
+

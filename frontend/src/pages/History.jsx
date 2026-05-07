@@ -48,7 +48,7 @@ const History = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8000/api/predict/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/predict/${id}`, {
         headers: { 'x-auth-token': token }
       });
 
@@ -68,7 +68,6 @@ const History = () => {
 
   const hasActiveFilters = searchTerm || severityFilter !== 'all' || sortOrder !== 'newest';
 
-  const userData = JSON.parse(localStorage.getItem('user'));
 
   // FILTER & SORT LOGIC
   const filteredHistory = history
@@ -231,7 +230,7 @@ const History = () => {
                 >
                   <div className="card-img-wrapper">
                     <img
-                      src={`http://localhost:8000/uploads/${userData._id}/${scan.imagePath}`}
+                      src={scan.imageBase64}
                       alt={scan.diseaseName}
                     />
                   </div>

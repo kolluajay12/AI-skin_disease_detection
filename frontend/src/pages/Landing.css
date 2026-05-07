@@ -356,3 +356,235 @@
     margin-top: 20px;
     color: #94a3b8;
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 20px 50px;
+        gap: 40px;
+    }
+
+    .hero-left {
+        max-width: 100%;
+    }
+
+    .hero-left h1 {
+        font-size: 36px;
+    }
+
+    .hero-left p {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-icon {
+        width: 140px;
+        height: 140px;
+    }
+
+    .section {
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+
+    .benefit-section {
+        margin-top: 60px !important;
+    }
+
+    .section-header-modern {
+        margin-bottom: 35px;
+    }
+
+    .section-header-modern h2 {
+        font-size: 30px !important;
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .benefit-card-modern {
+        padding: 30px 25px;
+        border-radius: 24px;
+    }
+
+    .benefit-card-modern:hover {
+        transform: translateY(-5px);
+    }
+
+    .steps {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .step {
+        text-align: center;
+    }
+
+    .conditions-section {
+        margin: 60px auto !important;
+    }
+
+    .sub-text-premium {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .conditions-grid-modern {
+        gap: 10px;
+    }
+
+    .condition-badge-modern {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+
+    .cta {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .disclaimer-section {
+        margin-top: 60px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .disclaimer-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    .disclaimer-icon-box {
+        width: 52px;
+        height: 52px;
+    }
+
+    .footer-copyright {
+        margin-top: 30px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 70px 16px 40px;
+    }
+
+    .hero-left h1 {
+        font-size: 28px;
+    }
+
+    .hero-left p {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .hero-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .section h2 {
+        font-size: 22px;
+    }
+
+    .section-header-modern h2 {
+        font-size: 24px !important;
+    }
+
+    .section-tag {
+        font-size: 11px;
+    }
+
+    .benefit-card-modern {
+        padding: 25px 20px;
+    }
+
+    .benefit-card-modern h3 {
+        font-size: 18px;
+    }
+
+    .benefit-card-modern p {
+        font-size: 13px;
+    }
+
+    .benefit-icon-wrapper {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+    }
+
+    .step-circle {
+        width: 42px;
+        height: 42px;
+    }
+
+    .step h4 {
+        font-size: 14px;
+    }
+
+    .step-desc {
+        font-size: 12px;
+    }
+
+    .condition-badge-modern {
+        padding: 8px 14px;
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .check-circle-small {
+        width: 16px;
+        height: 16px;
+        font-size: 8px;
+    }
+
+    .cta h2 {
+        font-size: 22px;
+    }
+
+    .cta p {
+        font-size: 14px;
+    }
+
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .disclaimer-card {
+        padding: 24px 16px;
+    }
+
+    .disclaimer-content h3 {
+        font-size: 17px;
+    }
+
+    .disclaimer-content p {
+        font-size: 13px;
+    }
+}

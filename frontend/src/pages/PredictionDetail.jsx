@@ -73,7 +73,7 @@ const PredictionDetail = () => {
           <div className="result-body">
             <div className="result-img-wrapper">
               <img
-                src={`${import.meta.env.VITE_API_URL}/uploads/${prediction.userId}/${prediction.imagePath}`}
+                src={prediction.imageBase64}
                 alt={prediction.diseaseName}
               />
             </div>

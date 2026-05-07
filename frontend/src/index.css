@@ -88,3 +88,58 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .glass-card {
+    border-radius: 1rem;
+    padding: 20px;
+  }
+
+  .auth-input {
+    padding: 0.75rem 0.875rem;
+    border-radius: 0.625rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .btn-brand {
+    padding: 0.75rem;
+    border-radius: 0.625rem;
+    font-size: 15px;
+  }
+
+  .header-nav {
+    padding: 10px 0;
+  }
+
+  /* Hide custom scrollbar on touch devices */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .glass-card {
+    border-radius: 0.875rem;
+    padding: 16px;
+  }
+
+  .auth-input {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .btn-brand {
+    padding: 0.625rem;
+    font-size: 14px;
+  }
+}
