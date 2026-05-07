@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, AlertCircle } from 'lucide-react';
 import axios from 'axios';
-import './login.css'; // reuse SAME CSS
+import './Login.css'; // reuse SAME CSS
 
 const Register = ({ login }) => {
   const [formData, setFormData] = useState({
