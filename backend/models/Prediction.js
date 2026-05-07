@@ -7,7 +7,7 @@ const PredictionSchema = new mongoose.Schema({
     advice: { type: String },
     severity: { type: String },
     urgency: { type: String },
-    imagePath: { type: String },
+    imageBase64: { type: String },
     notes: { type: String },
     consultedDoctor: { type: Boolean, default: false },
     consultationDate: { type: Date },

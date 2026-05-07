@@ -13,24 +13,12 @@ const Prediction = require("../models/Prediction");
 const router = express.Router();
 
 // ==========================
-// MULTER CONFIG
+// MULTER CONFIG (Memory Storage)
 // ==========================
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        const userDir = path.join("uploads", req.user.id);
-
-        if (!fs.existsSync(userDir)) {
-            fs.mkdirSync(userDir, { recursive: true });
-        }
-
-        cb(null, userDir);
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
 });
-
-const upload = multer({ storage });
 
 // ==========================
 // POST: Predict Disease
@@ -41,11 +29,19 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
             return res.status(400).json({ error: "No file uploaded" });
         }
 
-        // ✅ Create formData INSIDE route
-        const formData = new FormData();
-        formData.append("image", fs.createReadStream(req.file.path));
+        // Convert buffer to base64 data URI
+        const mimeType = req.file.mimetype;
+        const base64String = req.file.buffer.toString("base64");
+        const imageBase64 = `data:${mimeType};base64,${base64String}`;
 
-        // ✅ Call Flask API
+        // Create formData for ML API using the buffer
+        const formData = new FormData();
+        formData.append("image", req.file.buffer, {
+            filename: req.file.originalname,
+            contentType: req.file.mimetype
+        });
+
+        // Call Flask API
         const response = await axios.post(
             `${process.env.ML_API_URL}/predict`,
             formData,
@@ -86,7 +82,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
             advice: diseaseData.advice,
             severity: diseaseData.severity,
             urgency: diseaseData.urgency,
-            imagePath: req.file.filename
+            imageBase64: imageBase64
         });
 
         await prediction.save();
@@ -156,22 +152,6 @@ router.delete("/:id", auth, async (req, res) => {
 
         if (prediction.userId.toString() !== req.user.id) {
             return res.status(401).json({ msg: "User not authorized" });
-        }
-
-        // Delete image file
-        try {
-            const fullImagePath = path.join(
-                __dirname,
-                "../uploads",
-                req.user.id,
-                prediction.imagePath
-            );
-
-            if (fs.existsSync(fullImagePath)) {
-                fs.unlinkSync(fullImagePath);
-            }
-        } catch (fileErr) {
-            console.warn("File deletion failed:", fileErr.message);
         }
 
         await Prediction.findByIdAndDelete(req.params.id);
